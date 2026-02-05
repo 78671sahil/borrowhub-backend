@@ -192,7 +192,7 @@ client.on("disconnected", (reason) => {
 
 // Bot Start
 console.log("🛠️ [SYSTEM] Initializing WhatsApp Bot...");
-client.initialize();
+//client.initialize();
 
 
 // 🚀 SMART OTP FUNCTION (Best for Future)
