@@ -1,0 +1,22 @@
+2026/02/05-14:21:38.607 13cc Reusing MANIFEST C:\BorrowHub_Project\backend\session-data\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/02/05-14:21:38.608 13cc Recovering log #216
+2026/02/05-14:21:38.633 13cc Reusing old log C:\BorrowHub_Project\backend\session-data\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000216.log 
+2026/02/05-14:21:48.090 13cc Level-0 table #226: started
+2026/02/05-14:21:48.116 13cc Level-0 table #226: 1189273 bytes OK
+2026/02/05-14:21:48.116 13cc Delete type=0 #216
+2026/02/05-14:21:48.332 13cc Compacting 1@1 + 6@2 files
+2026/02/05-14:21:48.432 13cc Generated table #227@1: 70845 keys, 2213646 bytes
+2026/02/05-14:21:48.508 13cc Generated table #228@1: 71116 keys, 2230914 bytes
+2026/02/05-14:21:48.551 13cc Generated table #229@1: 37269 keys, 2190182 bytes
+2026/02/05-14:21:48.578 13cc Generated table #230@1: 4505 keys, 2163463 bytes
+2026/02/05-14:21:48.629 13cc Generated table #231@1: 25224 keys, 2226531 bytes
+2026/02/05-14:21:48.655 13cc Generated table #232@1: 19306 keys, 1077650 bytes
+2026/02/05-14:21:48.655 13cc Compacted 1@1 + 6@2 files => 12102386 bytes
+2026/02/05-14:21:48.656 13cc compacted to: files[ 0 0 6 0 0 0 0 ]
+2026/02/05-14:21:48.656 13cc Delete type=2 #218
+2026/02/05-14:21:48.656 13cc Delete type=2 #219
+2026/02/05-14:21:48.656 13cc Delete type=2 #220
+2026/02/05-14:21:48.656 13cc Delete type=2 #221
+2026/02/05-14:21:48.656 13cc Delete type=2 #222
+2026/02/05-14:21:48.656 13cc Delete type=2 #223
+2026/02/05-14:21:48.656 13cc Delete type=2 #226

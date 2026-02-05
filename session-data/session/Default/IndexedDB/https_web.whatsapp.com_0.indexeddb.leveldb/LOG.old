@@ -1,0 +1,22 @@
+2026/02/05-12:30:52.595 4a4c Reusing MANIFEST C:\BorrowHub_Project\backend\session-data\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/02/05-12:30:52.597 4a4c Recovering log #206
+2026/02/05-12:30:52.657 4a4c Reusing old log C:\BorrowHub_Project\backend\session-data\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000206.log 
+2026/02/05-12:37:36.281 8abc Level-0 table #217: started
+2026/02/05-12:37:36.396 8abc Level-0 table #217: 1314575 bytes OK
+2026/02/05-12:37:36.401 8abc Delete type=0 #206
+2026/02/05-12:47:28.910 8abc Compacting 1@1 + 6@2 files
+2026/02/05-12:47:29.082 8abc Generated table #218@1: 71675 keys, 2212897 bytes
+2026/02/05-12:47:29.292 8abc Generated table #219@1: 69000 keys, 2230450 bytes
+2026/02/05-12:47:29.423 8abc Generated table #220@1: 36017 keys, 2188498 bytes
+2026/02/05-12:47:29.491 8abc Generated table #221@1: 4630 keys, 2164304 bytes
+2026/02/05-12:47:29.648 8abc Generated table #222@1: 25249 keys, 2256748 bytes
+2026/02/05-12:47:29.714 8abc Generated table #223@1: 19024 keys, 930277 bytes
+2026/02/05-12:47:29.715 8abc Compacted 1@1 + 6@2 files => 11983174 bytes
+2026/02/05-12:47:29.716 8abc compacted to: files[ 0 0 6 0 0 0 0 ]
+2026/02/05-12:47:29.717 8abc Delete type=2 #209
+2026/02/05-12:47:29.717 8abc Delete type=2 #210
+2026/02/05-12:47:29.717 8abc Delete type=2 #211
+2026/02/05-12:47:29.717 8abc Delete type=2 #212
+2026/02/05-12:47:29.717 8abc Delete type=2 #213
+2026/02/05-12:47:29.718 8abc Delete type=2 #214
+2026/02/05-12:47:29.718 8abc Delete type=2 #217

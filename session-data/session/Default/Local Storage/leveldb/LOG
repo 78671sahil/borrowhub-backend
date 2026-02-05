@@ -1,0 +1,6 @@
+2026/02/05-14:21:36.758 9588 Reusing MANIFEST C:\BorrowHub_Project\backend\session-data\session\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/05-14:21:36.766 9588 Recovering log #4
+2026/02/05-14:21:36.770 9588 Reusing old log C:\BorrowHub_Project\backend\session-data\session\Default\Local Storage\leveldb/000004.log 
+2026/02/05-14:31:46.087 71c Level-0 table #8: started
+2026/02/05-14:31:46.102 71c Level-0 table #8: 13760 bytes OK
+2026/02/05-14:31:46.108 71c Delete type=0 #4
