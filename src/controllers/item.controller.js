@@ -1656,11 +1656,26 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return R * c; 
 }
 
-export const getItemsNearMe = async (req, res) => {
+ export const getItemsNearMe = async (req, res) => {
   try {
-    const { lng, lat } = req.query;
-    let items = await Item.find({ status: "available" }).lean().sort({ createdAt: -1 });
+    const { lng, lat, search } = req.query; // 👈 1. 'search' param yahan pakdo
+    console.log("📍 Search Query Received:", search);
 
+    // 2. Base filter: Sirf available items
+    let filter = { status: "available" };
+
+    // 3. 🔥 SEARCH LOGIC: Agar search word aaya hai toh filter update karo
+    if (search && search.trim() !== "") {
+      filter.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    // 4. Pehle filtered items database se nikalo
+    let items = await Item.find(filter).lean().sort({ createdAt: -1 });
+
+    // 5. Distance Calculation (Tera purana logic)
     if (lng && lat && lng !== "null" && lat !== "null" && lng !== "0") {
       const userLat = parseFloat(lat);
       const userLng = parseFloat(lng);
@@ -1675,14 +1690,18 @@ export const getItemsNearMe = async (req, res) => {
         return { ...item, distance: null };
       });
 
+      // Door wale niche, paas wale upar
       items.sort((a, b) => {
         if (a.distance === null) return 1;
         if (b.distance === null) return -1;
         return a.distance - b.distance;
       });
     }
+
     res.status(200).json({ success: true, count: items.length, items });
+
   } catch (err) {
+    console.error("Server Error:", err);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
