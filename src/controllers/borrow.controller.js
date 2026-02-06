@@ -491,6 +491,37 @@
 import Borrow from "../models/borrow.model.js";
 import Item from "../models/item.model.js";
 
+
+
+
+
+
+// 🔥 5-Minute Auto Revert Logic
+ export const startReservationTimer = (itemId, borrowId) => {
+  setTimeout(async () => {
+    try {
+      const item = await Item.findById(itemId);
+      const borrow = await Borrow.findById(borrowId);
+
+      // Agar status abhi bhi "reserved" hai, matlab OTP verify nahi hua
+      if (item && item.status === "reserved") {
+        item.status = "available";
+        item.borrowedBy = null;
+        item.pickupOtp = "";
+        await item.save();
+
+        if (borrow && borrow.status === "reserved") {
+          borrow.status = "cancelled";
+          await borrow.save();
+        }
+        console.log(`⏰ Time up! Item ${itemId} is now available again.`);
+      }
+    } catch (err) {
+      console.error("Timer error:", err);
+    }
+  }, 5 * 60 * 1000); // $5 \times 60 \times 1000$ ms
+};
+
 // ---------------------------------------------------------
 // 1. CREATE BORROW
 // ---------------------------------------------------------
@@ -533,6 +564,7 @@ export const createBorrow = async (req, res) => {
     item.borrowedBy = userId;
     item.pickupOtp = pickupOtp; 
     await item.save();
+    startReservationTimer(item._id, borrow._id);
 
     res.status(201).json({ success: true, borrow });
   } catch (err) {

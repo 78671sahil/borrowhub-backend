@@ -269,6 +269,7 @@ import razorpay from "../utils/razorpay.js";
 import Item from "../models/item.model.js";
 import Payment from "../models/Payment.js";
 import Borrow from "../models/borrow.model.js";
+import { startReservationTimer } from "./borrow.controller.js";
 import crypto from "crypto";
 
 // ---------------------------------------------------------
@@ -319,6 +320,7 @@ export const mockPaymentSuccess = async (req, res) => {
     item.pickupOtp = pickupOtp; // Handover ke liye zaroori
     
     await item.save();
+    startReservationTimer(item._id, newBorrow._id);
 
     res.json({
       success: true,
@@ -459,6 +461,7 @@ export const verifyPayment = async (req, res) => {
     item.pickupOtp = pickupOtp; 
     
     await item.save();
+    startReservationTimer(item._id, newBorrow._id);
 
     res.json({
       success: true,
