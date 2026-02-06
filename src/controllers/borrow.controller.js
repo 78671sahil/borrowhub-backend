@@ -599,23 +599,40 @@ export const confirmBorrow = async (req, res) => {
 // ---------------------------------------------------------
 // 3. 🔥 VERIFY PICKUP
 // ---------------------------------------------------------
+ // ---------------------------------------------------------
+// 3. 🔥 VERIFY PICKUP (FIXED & FINAL)
+// ---------------------------------------------------------
 export const verifyPickup = async (req, res) => {
   try {
     const { itemId, otp, evidence } = req.body;
     const userId = req.user._id;
 
+    console.log(`🔍 Verifying Pickup for Item: ${itemId}, User: ${userId}`);
+
+    // 🔥 FIX 1: Sabse LATEST booking uthao (Ghost bookings ignore hongi)
     const borrow = await Borrow.findOne({
       item: itemId,
       owner: userId,
       status: "reserved",
-    });
+    }).sort({ createdAt: -1 }); // 👈 LATEST FIRST
 
-    if (!borrow) return res.status(404).json({ success: false, message: "No pending pickup found." });
-
-    if (borrow.pickupOtp !== otp) {
-      return res.status(400).json({ success: false, message: "❌ Wrong OTP!" });
+    if (!borrow) {
+        console.log("❌ No pending pickup found in DB");
+        return res.status(404).json({ success: false, message: "No pending pickup found." });
     }
 
+    // 🔥 FIX 2: String banakar Trim karo (Spaces aur Type ka lafda khatam)
+    const inputOtp = String(otp).trim();
+    const dbOtp = String(borrow.pickupOtp).trim();
+
+    console.log(`👉 Matching: Input('${inputOtp}') vs DB('${dbOtp}')`);
+
+    if (inputOtp !== dbOtp) {
+      console.log("❌ OTP Mismatch!");
+      return res.status(400).json({ success: false, message: "❌ Wrong OTP! Please check carefully." });
+    }
+
+    // --- Success Logic ---
     borrow.status = "active";
     if (evidence && evidence.length > 0) {
         borrow.pickupEvidence = evidence; 
@@ -627,6 +644,7 @@ export const verifyPickup = async (req, res) => {
         pickupEvidence: evidence || [] 
     });
 
+    console.log("✅ Handover Successful!");
     res.json({ success: true, message: "Handover Successful! Evidence Saved. 📸" });
 
   } catch (err) {
