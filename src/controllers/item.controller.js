@@ -1448,7 +1448,8 @@ export const getBorrowedItems = async (req, res) => {
       borrowedBy: req.user._id,
       // 'reserved' zaroori hai tabhi ticket dikhega
       status: { $in: ["borrowed", "reserved", "disputed_in_court", "completed"] }, 
-    }).populate("owner", "name");
+    }).populate("owner", "name")
+    .populate("borrowedBy", "name");
 
     res.json({ success: true, items });
   } catch (err) {
