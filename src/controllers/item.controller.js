@@ -1449,7 +1449,8 @@ export const getBorrowedItems = async (req, res) => {
       // 'reserved' zaroori hai tabhi ticket dikhega
       status: { $in: ["borrowed", "reserved", "disputed_in_court", "completed"] }, 
     }).populate("owner", "name")
-    .populate("borrowedBy", "name");
+     // 👇👇 YE WALI LINE SABSE ZAROORI HAI 👇👇
+    .populate("borrowedBy", "name address idProof");
 
     res.json({ success: true, items });
   } catch (err) {
