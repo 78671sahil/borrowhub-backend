@@ -76,11 +76,13 @@ app.get('/', (req, res) => {
 });
 
 // 🚨 YAHAN MAGIC KIYA HAI (Saare darwaze khol diye)
-app.use(cors({
+ app.use(cors({
   origin: [
-    "http://localhost:3000",                  // Local testing ke liye
-    "https://borrowhubs.vercel.app",          // Tera MAIN Live Domain (Screenshot se)
-    "https://borrowhubs-frontend.vercel.app"  // Backup link
+    "http://localhost:3000",                // Tera Laptop
+    "https://borrowhubs.vercel.app",        // Purana Backup Link
+    "https://borrowhubs-frontend.vercel.app", 
+    "https://borrowhub.in",                 // ✅ TERA NAYA DOMAIN
+    "https://www.borrowhub.in"              // ✅ NAYA DOMAIN (WWW)
   ],
   credentials: true,
 }));

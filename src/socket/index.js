@@ -5,9 +5,15 @@ import Message from "../models/Message.js";
 let io;
 
 export const initSocket = (server) => {
-  io = new Server(server, {
+   io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: [
+        "http://localhost:3000",
+        "https://borrowhubs.vercel.app",
+        "https://borrowhubs-frontend.vercel.app",
+        "https://borrowhub.in",       // ✅ Added
+        "https://www.borrowhub.in"    // ✅ Added
+      ],
       credentials: true,
     },
   });
