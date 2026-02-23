@@ -16,8 +16,13 @@ import returnRoutes from "./routes/return.routes.js";
 
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:3000",
+ app.use(cors({
+  origin: [
+    "http://localhost:3000",        // Tere local testing ke liye
+    "http://localhost:5173",        // (Agar Vite use karta hai toh)
+    "https://www.borrowhub.in",     // Teri live website (www ke saath)
+    "https://borrowhub.in"          // Teri live website (bina www ke)
+  ],
   credentials: true,
 }));
 
