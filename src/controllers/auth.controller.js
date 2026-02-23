@@ -1,7 +1,7 @@
  import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import  User  from "../models/user.model.js";
- import { generateOTP, sendSMS } from "../utils/otp.util.js";
+ import { generateOTP } from "../utils/otp.util.js";
 
  
 
