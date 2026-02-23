@@ -3,7 +3,11 @@
 };
 
 // 🔥 FIX: Ye export missing tha isliye SyntaxError aa raha tha
-export const sendSMS = async (phone, otp) => {
-  console.log(`[OTP LOG] Phone: ${phone}, OTP: ${otp}`);
-  // Future mein yahan WhatsApp ya Fast2SMS ka logic daal sakte ho
+ export const sendSMS = async (phone, otp) => {
+  // Yahan tera WhatsApp Bot ka logic hoga (Venom ya WhatsApp-web.js)
+  // Agar bot ready nahi hai, toh ye function error throw karega
+  console.log(`Attempting to send WhatsApp OTP to ${phone}: ${otp}`);
+  
+  // Example condition: agar bot ready nahi hai toh error throw karo
+  // throw new Error("Bot not ready"); 
 };

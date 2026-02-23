@@ -1,91 +1,35 @@
-// import express from "express";
-// import {addItem} from "../controllers/item.controller.js";
-// import authMiddleware from "../middlewares/auth.middleware.js";
-// import multer from "multer";
-// import { getAllItems } from "../controllers/item.controller.js";
-// import { getMyItems } from "../controllers/item.controller.js";
-// import { getLentOutItems } from "../controllers/item.controller.js";
-// import { getBorrowedItems } from "../controllers/item.controller.js";
-// import { getItemById } from "../controllers/item.controller.js";
-// import { updateItem } from "../controllers/item.controller.js";
-// import { borrowItem } from "../controllers/item.controller.js";
-// import { deleteItem } from "../controllers/item.controller.js";
-
-// const router = express.Router();
-// const upload = multer({ dest: "uploads/" });
-
-// router.get("/", getAllItems);
-
-// router.post(
-//   "/add",
-//   authMiddleware,           // 🔐 TOKEN CHECK
-//   upload.array("images"),   // 📸 images[]
-//   addItem
-// );
-
-
-// router.get("/my-items", authMiddleware, getMyItems);
-// router.get("/lent-out", authMiddleware, getLentOutItems);
-// router.get("/borrowed", authMiddleware, getBorrowedItems);
-// router.get("/:id", getItemById);
- 
-//  router.put(
-//   "/:id",
-//   authMiddleware,
-//   upload.array("images"),
-//   updateItem
-// );
-
-// router.post(
-//   "/:id/borrow",
-//   authMiddleware,
-//   borrowItem
-// );
-
-
-// router.delete("/:id", authMiddleware, deleteItem);
-
-// export default router;
-
 import express from "express";
-import {
-  addItem,
-  getAllItems,
-  getMyItems,
-  getLentOutItems,
-  getBorrowedItems,
-  getItemById,
-  updateItem,
-  borrowItem,
-  deleteItem
-} from "../controllers/item.controller.js";
+import {addItem} from "../controllers/item.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import multer from "multer";
+import { getAllItems } from "../controllers/item.controller.js";
+import { getMyItems } from "../controllers/item.controller.js";
+import { getLentOutItems } from "../controllers/item.controller.js";
+import { getBorrowedItems } from "../controllers/item.controller.js";
+import { getItemById } from "../controllers/item.controller.js";
+import { updateItem } from "../controllers/item.controller.js";
+import { borrowItem } from "../controllers/item.controller.js";
+import { deleteItem } from "../controllers/item.controller.js";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-// 1. General routes
 router.get("/", getAllItems);
-
-// 📍 2. Specific routes (Hamesha :id se UPAR rakho)
-// Isse Express 'nearby' ko item ID nahi samjhega aur 500 error nahi aayegi
-router.get("/nearby", getAllItems); 
-router.get("/my-items", authMiddleware, getMyItems);
-router.get("/lent-out", authMiddleware, getLentOutItems);
-router.get("/borrowed", authMiddleware, getBorrowedItems);
-
-// 🆔 3. Dynamic routes (SABSE NEECHE)
-router.get("/:id", getItemById);
 
 router.post(
   "/add",
-  authMiddleware,
-  upload.array("images"),
+  authMiddleware,           // 🔐 TOKEN CHECK
+  upload.array("images"),   // 📸 images[]
   addItem
 );
 
-router.put(
+
+router.get("/my-items", authMiddleware, getMyItems);
+router.get("/lent-out", authMiddleware, getLentOutItems);
+router.get("/borrowed", authMiddleware, getBorrowedItems);
+router.get("/:id", getItemById);
+ 
+ router.put(
   "/:id",
   authMiddleware,
   upload.array("images"),
@@ -98,6 +42,9 @@ router.post(
   borrowItem
 );
 
+
 router.delete("/:id", authMiddleware, deleteItem);
 
 export default router;
+
+ 
