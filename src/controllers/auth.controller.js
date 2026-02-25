@@ -44,7 +44,7 @@ export const register = async (req, res) => {
    //ye rha otp ka code isko replace krna hoga sms wale code se future me
     console.log("REGISTER OTP:", otp); // SMS later
 
-    res.json({ message: "OTP sent for registration" });
+    res.json({ message: "OTP sent for registration" , otp: otp });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -124,7 +124,7 @@ export const forgotPassword = async (req, res) => {
 
   console.log("RESET OTP:", otp);
 
-  res.json({ message: "OTP sent for password reset" });
+  res.json({ message: "OTP sent for password reset" ,otp: otp });
 };
 
 // reset password otp verify
@@ -141,7 +141,7 @@ export const resetPassword = async (req, res) => {
   user.otpExpiry = null;
   await user.save();
 
-  res.json({ message: "Password reset successful" });
+  res.json({ message: "Password reset successful",otp: otp });
 };
 
 export const resendOtp = async (req, res) => {
@@ -173,7 +173,7 @@ export const resendOtp = async (req, res) => {
 
     console.log("RESEND OTP:", otp);
 
-    res.json({ message: "OTP resent successfully" });
+    res.json({ message: "OTP resent successfully" ,otp: otp });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

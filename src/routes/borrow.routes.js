@@ -6,7 +6,8 @@ import {
   createBorrow, 
   confirmBorrow, 
   verifyPickup ,
-  uploadPickupEvidence
+  uploadPickupEvidence,
+  getNavbarCounts
 } from "../controllers/borrow.controller.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.post("/", authMiddleware, createBorrow);
 router.post("/confirm", authMiddleware, confirmBorrow);
 router.post("/verify-pickup", authMiddleware, verifyPickup);
 router.post("/upload-evidence", authMiddleware, uploadPickupEvidence);
+router.get("/navbar-counts", authMiddleware, getNavbarCounts);
 
 export default router;

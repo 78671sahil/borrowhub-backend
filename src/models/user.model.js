@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    address: { type: String },
+    idProof: { type: String },
+    profilePic: { type: String },
 
     otp: String,
     otpExpiry: Date,

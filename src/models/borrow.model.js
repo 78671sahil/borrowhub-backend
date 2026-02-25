@@ -94,7 +94,7 @@ const borrowSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["active", "returned", "disputed" , "completed", "overdue", "reserved"], // 'disputed' add kiya safety ke liye
+      enum: ["active", "returned", "disputed" , "completed", "overdue", "reserved","cancelled"], // 'disputed' add kiya safety ke liye
       default: "active",
     },
 
@@ -127,7 +127,8 @@ const borrowSchema = new mongoose.Schema(
     pickupEvidence: [{ type: String }], // Yahan photos ke URL save honge
 
     penaltyAmount: { type: Number, default: 0 }, // Late fees
-    finalDeduction: { type: Number, default: 0 }, // Total jo return ke time kata (Damage + Late)
+    finalDeduction: { type: Number, default: 0 }, 
+    totalPrice: { type: Number, default: 0 },// Total jo return ke time kata (Damage + Late)
     
     refundedAmount: { type: Number, default: 0 }, // Purana field (optional rakh)
   },

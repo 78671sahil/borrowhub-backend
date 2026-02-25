@@ -401,6 +401,7 @@ export const verifyReturnOtp = async (req, res) => {
       item.borrower = null;
       item.borrowTo = null;
       await item.save();
+      await Borrow.findByIdAndUpdate(borrowId, { status: "returned" });
     }
 
     await returnRequest.save();
@@ -520,22 +521,38 @@ const finalizeReturn = async (borrow, request, res, penaltyAmount, statusMsg) =>
 /* ---------------------------------------------------------
    GET REQUESTS FOR LENDER
 --------------------------------------------------------- */
+// export const getPendingReturns = async (req, res) => {
+//   try {
+//     const userId = req.user._id;
+//     const requests = await ReturnRequest.find({
+//       owner: userId,
+//       status: "pending", 
+//     })
+//     .populate("item")
+//     .populate("borrower", "name email");
+
+//     res.json({ success: true, requests });
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
+// 🔥 NAYA getPendingReturns (Copy-Paste this)
 export const getPendingReturns = async (req, res) => {
   try {
-    const userId = req.user._id;
-    const requests = await ReturnRequest.find({
-      owner: userId,
-      status: "pending", 
+    // Ye LENDER ke wo items layega jo abhi rent par hain ('active')
+    const pendingReturns = await Borrow.find({
+      owner: req.user._id,
+      status: "active" 
     })
-    .populate("item")
-    .populate("borrower", "name email");
+    .populate("item") // Item ki photo/title ke liye
+    .populate("borrower", "name phone address idProof profilePic"); // 🔥 ASLI FIX: Ye line address aur naam bhejegi!
 
-    res.json({ success: true, requests });
+    res.json({ success: true, requests: pendingReturns });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Pending Returns Error:", err);
+    res.status(500).json({ message: "Server Error" });
   }
 };
-
 /* ---------------------------------------------------------
    ⏰ CRON JOB: AUTO-ESCALATION
 --------------------------------------------------------- */
