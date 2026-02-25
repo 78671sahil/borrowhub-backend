@@ -79,6 +79,6 @@ borrowTo: {
   { timestamps: true }
 );
 
-itemSchema.index({ "location.coordinates": "2dsphere" });
+ itemSchema.index({ location: "2dsphere" }); // 🔥 .coordinates hata de
 
 export default mongoose.model("Item", itemSchema);
