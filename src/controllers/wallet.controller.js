@@ -66,9 +66,10 @@ import Withdrawal from "../models/Withdrawal.js";
 
     // 1. 💰 LIFETIME EARNINGS (Total Earned)
     // Jitne bhi item 'active', 'completed' ya 'stolen' hain, unka total rent
+    // 🔥 FIX: "returned" status ko bhi add kiya, ab paise gayab nahi honge!
     const myEarnings = await Borrow.find({
       owner: userId, 
-      status: { $in: ["active", "completed", "stolen"] }
+      status: { $in: ["active", "completed", "returned", "stolen"] } 
     }).populate("item", "title");
 
     let lifetimeEarnings = 0;
